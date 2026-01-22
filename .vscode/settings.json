@@ -1,3 +1,5 @@
 {
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.project.sourcePaths": ["firstapi/src/main/java", "firstapi/src/test/java"],
+    "java.project.referencedLibraries": ["firstapi/target/**/*.jar"]
 }
