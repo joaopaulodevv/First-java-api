@@ -1,28 +1,32 @@
 package com.joaopaulodevv.firstapi.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.joaopaulodevv.firstapi.model.User;
+import com.joaopaulodevv.firstapi.dto.UserDTO;
+import com.joaopaulodevv.firstapi.service.UserService;
 
 @RestController
 @RequestMapping(value = "/users")
 public class UserController {
     
+    @Autowired
+    private UserService userService;
+    
     @GetMapping
-    public ResponseEntity<List<User>> findAll() {
-        User user = new User("João Paulo","123@G.COM","21979627818","123");
-        
-        List<User> tropa = new ArrayList<>();
-        tropa.add(user);
-        tropa.add(new User("Maria","12@g.com","21987654321","321"));
-        
-        
-        return ResponseEntity.ok().body(tropa);
+    public ResponseEntity<List<UserDTO.Response>> findAll() {
+        return ResponseEntity.ok().body(userService.getUsers());
+    }
+
+    @GetMapping(value="/{id}")
+    public ResponseEntity<UserDTO.Response> findById(@PathVariable Long id){
+        UserDTO.Response user = userService.getUserById(id);
+        return ResponseEntity.ok(user);
     }
 }
