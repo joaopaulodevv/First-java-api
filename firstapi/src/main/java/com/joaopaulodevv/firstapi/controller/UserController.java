@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.joaopaulodevv.firstapi.dto.UserDTO;
 import com.joaopaulodevv.firstapi.service.UserService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/users")
 public class UserController {
@@ -34,7 +36,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserDTO.Response> insert(@RequestBody UserDTO.Request obj){
+    public ResponseEntity<UserDTO.Response> insert(@Valid @RequestBody UserDTO.Request obj){
         UserDTO.Response res = userService.insert(obj);
 
         URI location = URI.create(String.format("/users/%s", res.id()));

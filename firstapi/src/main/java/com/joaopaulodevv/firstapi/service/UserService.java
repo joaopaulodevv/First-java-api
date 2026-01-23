@@ -11,6 +11,8 @@ import com.joaopaulodevv.firstapi.exception.EmailAlreadyExistsException;
 import com.joaopaulodevv.firstapi.model.User;
 import com.joaopaulodevv.firstapi.repository.UserRepository;
 
+import jakarta.validation.Valid;
+
 @Service
 public class UserService {
 
